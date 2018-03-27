@@ -1,4 +1,4 @@
-# 201801Mobilie
+# Receipt diary
 
 A MONEY MANAGEMENT APP
 
