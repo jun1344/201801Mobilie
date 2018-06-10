@@ -1,48 +1,29 @@
-apply plugin: 'com.android.application'
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
 
-version = '1.0.0'
-
-android {
-
-    compileSdkVersion 26
-
-    defaultConfig {
-        applicationId "com.Junsic.junsic.receiptdiary"
-        minSdkVersion 24
-        targetSdkVersion 26
-        versionCode 5
-        versionName "1.4"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+buildscript {
+    
+    repositories {
+        google()
+        jcenter()
     }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.1'
+        
 
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
     }
-    productFlavors {
-    }
-
-    configurations.all {
-        resolutionStrategy {
-            force 'com.android.support:support-annotations:26.1.0'
-        }
-    }
-
 }
 
-dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    implementation 'com.ramotion.foldingcell:folding-cell:1.2.2'
-    implementation 'com.dzaitsev.android.widget:radarchartview:0.1.0'
-    implementation 'com.getbase:floatingactionbutton:1.10.1'
-    implementation 'com.github.clans:fab:1.6.4'
-    implementation 'cc.trity.floatingactionbutton:library:1.0.0'
-    implementation 'com.github.arimorty:floatingsearchview:2.1.1'
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven { url "https://jitpack.io" }
+        maven { url 'https://dl.bintray.com/dmitriyzaitsev/maven' }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
 }
