@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="List">
+        <item >생활비</item>
+        <item >저축</item>
+        <item >사치</item>
+        <item >고정지출</item>
+        <item >월급</item>
+        <item >기타</item>
+    </string-array>
+</resources>
