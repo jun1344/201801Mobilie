@@ -2,10 +2,15 @@ package Programing;
 
 import java.sql.*;
 
+/**
+* DBconnectionì„í•©ë‹ˆë‹¤. 
+*/
 public class DBconnection {
 	
 
-
+	/**
+	* ì»¤ë„¥ì…”ì„ì´ˆê¸°ì„¤ì •ì„ í•©ë‹ˆë‹¤. 
+	*/
 	public  Connection init() throws ClassNotFoundException, SQLException {
 		
         Connection connection = null;
@@ -15,8 +20,8 @@ public class DBconnection {
         
         return connection;
 	}
-	
-	//È¸¿ø°¡ÀÔ ÇÒ¶§ÀÇ DBÇÔ¼ö
+
+	//íšŒì›ê°€ì… í• ë•Œì˜ DBí•¨ìˆ˜
 	public  boolean insertUser(String id, String password) throws ClassNotFoundException, SQLException{
          
          Connection con = init();
@@ -35,7 +40,7 @@ public class DBconnection {
          
       }
 	
-	//È¸¿øÅ»Åğ ÇÒ¶§ÀÇ DBÇÔ¼ö
+	//íšŒì›íƒˆí‡´ í• ë•Œì˜ DBí•¨ìˆ˜
 	public  boolean deleteUser(String id) throws ClassNotFoundException, SQLException{
         
         Connection con = init();
@@ -53,7 +58,7 @@ public class DBconnection {
             return false;
      }
 	
-	//Á¡¼ö ¾÷µ¥ÀÌÆ® 
+	//ì ìˆ˜ ì—…ë°ì´íŠ¸ 
 	public  boolean updateScore(String id, int score) throws ClassNotFoundException, SQLException{
         
         Connection con = init();
@@ -71,7 +76,7 @@ public class DBconnection {
            return false;
      }
 
-	//ºñ¹Ğ ¹øÈ£ ¹Ù²Ù±â
+	//ë¹„ë°€ ë²ˆí˜¸ ë°”ê¾¸ê¸°
 	public  boolean updatePassword(String id, String password) throws ClassNotFoundException, SQLException{
         
         Connection con = init();
@@ -89,9 +94,9 @@ public class DBconnection {
            return false;
      }
 	
-	//·Î±×ÀÎ ºñ¹Ğ¹øÈ£°¡
-	// ¸ÂÀ¸¸é true 
-	// ¾Æ´Ï¸é false 
+	//ë¡œê·¸ì¸ ë¹„ë°€ë²ˆí˜¸ê°€
+	// ë§ìœ¼ë©´ true 
+	// ì•„ë‹ˆë©´ false 
 	public  boolean login(String id, String password) throws ClassNotFoundException, SQLException{
         Connection con = init();
         String sql = "SELECT * FROM user WHERE id = '" + id + "'";
@@ -115,9 +120,9 @@ public class DBconnection {
             return false;
 	}
 	
-	//È¸¿ø°¡ÀÔ ÇÒ¶§ ¾ÆÀÌµğ Áßº¹È®ÀÎ ÇÏ´Â°Å 
-	//Áßº¹¾Æ´Ï¸é true
-	//Áßº¹ÀÌ¸é false
+	//íšŒì›ê°€ì… í• ë•Œ ì•„ì´ë”” ì¤‘ë³µí™•ì¸ í•˜ëŠ”ê±° 
+	//ì¤‘ë³µì•„ë‹ˆë©´ true
+	//ì¤‘ë³µì´ë©´ false
 	public  boolean idCheck(String id) throws ClassNotFoundException, SQLException{
         Connection con = init();
         String sql = "SELECT * FROM user WHERE id = '" + id + "'";
