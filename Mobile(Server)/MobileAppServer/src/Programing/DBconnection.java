@@ -10,6 +10,7 @@ public class DBconnection {
 
 	/**
 	* 커넥셔을초기설정을 합니다. 
+	* @return Connection을 반환합니다. 
 	*/
 	public  Connection init() throws ClassNotFoundException, SQLException {
 		
@@ -21,6 +22,10 @@ public class DBconnection {
         return connection;
 	}
 
+	/**
+	* 유저를 추가 합니다 .
+	* @return 함수가 제대로 작동하는지 참과 거짓을 나타내는 Boolean값을 return 합니다.
+	*/
 	//회원가입 할때의 DB함수
 	public  boolean insertUser(String id, String password) throws ClassNotFoundException, SQLException{
          
@@ -40,6 +45,10 @@ public class DBconnection {
          
       }
 	
+	/**
+	* 유저를 삭제합니다.
+	* @return 함수가 제대로 작동하는지 참과 거짓을 나타내는 Boolean값을 return 합니다.
+	*/	
 	//회원탈퇴 할때의 DB함수
 	public  boolean deleteUser(String id) throws ClassNotFoundException, SQLException{
         
@@ -58,7 +67,12 @@ public class DBconnection {
             return false;
      }
 	
-	//점수 업데이트 
+	/**
+	* 유저를 업데이트 합니다..
+	* @param id 유저의 id를 나타냅니다.
+	* @param score 유저의 점수를 나타냅니다.
+	* @return 함수가 제대로 작동하는지 참과 거짓을 나타내는 Boolean값을 return 합니다.
+	*/
 	public  boolean updateScore(String id, int score) throws ClassNotFoundException, SQLException{
         
         Connection con = init();
@@ -76,7 +90,12 @@ public class DBconnection {
            return false;
      }
 
-	//비밀 번호 바꾸기
+	/**
+	* 비밀번호를 바꾸게 합니다.
+	* @param id 유저의 id를 나타냅니다.
+	* @param password 유저의 비밀번호를 나타냅니다.
+	* @return 함수가 제대로 작동하는지 참과 거짓을 나타내는 Boolean값을 return 합니다.
+	*/
 	public  boolean updatePassword(String id, String password) throws ClassNotFoundException, SQLException{
         
         Connection con = init();
@@ -94,9 +113,12 @@ public class DBconnection {
            return false;
      }
 	
-	//로그인 비밀번호가
-	// 맞으면 true 
-	// 아니면 false 
+	/**
+	* 유저를 업데이트 합니다..
+	* @param id 유저의 id를 나타냅니다.
+	* @param password 유저의 비밀번호를 나타냅니다.
+	* @return 함수가 제대로 작동하는지 참과 거짓을 나타내는 Boolean값을 return 합니다.
+	*/
 	public  boolean login(String id, String password) throws ClassNotFoundException, SQLException{
         Connection con = init();
         String sql = "SELECT * FROM user WHERE id = '" + id + "'";
@@ -146,6 +168,11 @@ public class DBconnection {
             return true;
 	}
 	
+	/**
+	* 유저 점수를 체크합니다. 
+	* @param id 유저의 id를 나타냅니다.
+	* @return 함수가 제대로 작동하는지 참과 거짓을 나타내는 Boolean값을 return 합니다.
+	*/
 	public String idScoreCheck(String target, String user) throws ClassNotFoundException, SQLException{
         Connection con = init();
         String sql = "SELECT * FROM "+target+"_s WHERE user = '" + user + "'";
@@ -169,6 +196,11 @@ public class DBconnection {
             return "pass";
 	}
 	
+	/**
+	* 유저 가계부 테이블을 검색합니다. 
+	* @param id 유저의 id를 나타냅니다.
+	* @return 함수가 제대로 작동하는지 참과 거짓을 나타내는 Boolean값을 return 합니다.
+	*/
 	public boolean searchTables(String id) throws ClassNotFoundException, SQLException{
         
 		boolean isCheck = false;
@@ -191,7 +223,14 @@ public class DBconnection {
         
         return isCheck;
 	}
-	
+	/**
+	* 유저 가계부 테이블을 만듭니다.
+	* @param id 테이블 id를 나타냅니다. 
+	* @param score 점수를 나타냅니다.
+	* @param total 총점을 나타냅니다.
+	* @param user 유져 아이디를 나타냅니다. 
+	* @return 함수가 제대로 작동하는지 참과 거짓을 나타내는 Boolean값을 return 합니다.
+	*/
 	public boolean makeTable(String id, String user, Integer score, Integer total) throws ClassNotFoundException, SQLException{
 
         Connection con = init();
@@ -215,7 +254,15 @@ public class DBconnection {
            return false;
         
         
-	}	
+	}
+	/**
+	* 유저 가계부 리스트를 불러옵니다. 
+	* @param id 테이블 id를 나타냅니다. 
+	* @param score 점수를 나타냅니다.
+	* @param total 총점을 나타냅니다.
+	* @param user 유져 아이디를 나타냅니다. 
+	* @return 함수가 제대로 작동하는지 참과 거짓을 나타내는 Boolean값을 return 합니다.
+	*/
 	public String loadList(String keyword, String user) throws ClassNotFoundException, SQLException{
         
 		Connection con = init();
@@ -263,6 +310,13 @@ public class DBconnection {
         
         return result;
 	}
+	/**
+	* 유저 가계부를 평가합니다 .
+	* @param id 테이블 id를 나타냅니다. 
+	* @param score 점수를 나타냅니다.
+	* @param total 총점을 나타냅니다.
+	* @return 함수가 제대로 작동하는지 참과 거짓을 나타내는 Boolean값을 return 합니다.
+	*/
 	public boolean scoreReceipt(String target, String id,String context, int score) throws ClassNotFoundException, SQLException{
 		
 		Connection con = init();
@@ -315,7 +369,14 @@ public class DBconnection {
 
         return true;
 	}
-	
+	/**
+	* 유저 가계부 테이블에 데이터를  만듭니다.
+	* @param id 테이블 id를 나타냅니다. 
+	* @param score 점수를 나타냅니다.
+	* @param total 총점을 나타냅니다.
+	* @param user 유져 아이디를 나타냅니다. 
+	* @return 함수가 제대로 작동하는지 참과 거짓을 나타내는 Boolean값을 return 합니다.
+	*/
 	public boolean insertReceipt(String id, String user, Integer score, Integer total) throws ClassNotFoundException, SQLException{
 
         Connection con = init();
